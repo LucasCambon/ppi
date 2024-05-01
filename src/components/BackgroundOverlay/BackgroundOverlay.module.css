@@ -1,0 +1,8 @@
+.overlay {
+    background-color: #1a8dff;
+    height: 295px;
+    position: absolute;
+    z-index: 0;
+    top: 60px;
+    width: 100%;
+}

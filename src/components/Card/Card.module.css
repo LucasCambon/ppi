@@ -1,0 +1,40 @@
+.card {
+    position: absolute;
+    top: 228px;
+    left: 6.01%;
+    height: 435px;
+    width: 87.97%;
+    border-radius: 8px;
+    background-color: #FFFFFF;
+    box-shadow: 0px 5px 5px 0px #0000001A;
+}
+
+.formContainer {
+    display: flex; /* Utiliza Flexbox */
+    align-items: center; /* Alinea los elementos verticalmente */
+    justify-content: space-around;
+}
+
+.conversionText {
+    font-family: Inter;
+    font-size: 32px;
+    font-weight: 600;
+    line-height: 36px;
+    text-align: left;
+    color: #000000;
+    width: 330px;
+    height: 72px;
+    top: 407px;
+    left: 119px;
+    gap: 0px;
+    opacity: 1;
+}
+
+@media (max-width: 375px) {
+    .card {
+        top: 216px;
+        left: 8.27%;
+        height: 484px;
+        width: 82.94%;
+    }
+}

@@ -1,0 +1,22 @@
+.header {
+    background-color: #0E1342;
+    height: 60px;
+    color: #FFF;
+}
+  
+.header h2 {
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 20px;
+    height: 20px;
+    top: 20px;
+    left: 54.61px;
+    position: absolute;
+}
+  
+@media (max-width: 375px) {
+    .header h2 {
+        position: absolute;
+        left: 16px;
+    }
+}
