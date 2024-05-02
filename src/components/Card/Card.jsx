@@ -5,7 +5,7 @@ import Input from "../Input/Input";
 import { useCurrencies } from "@/services/CurrenciesContext";
 
 const Card = () => {
-    const { currencies, baseCurrency, setBaseCurrency, conversionCurrency, setConversionCurrency, moneyValue, setMoneyValue, conversionValue, swapCurrencies } = useCurrencies();
+    const { currencies, baseCurrency, setBaseCurrency, conversionCurrency, setConversionCurrency, moneyValue, setMoneyValue, conversionValue, reverseConversionValue, swapCurrencies } = useCurrencies();
     const [currenciesArr, setCurrenciesArr] = useState([]);
                 
     useEffect(() => {
@@ -21,9 +21,12 @@ const Card = () => {
                 <button onClick={swapCurrencies}>cambiar</button>
                 <Input options={currenciesArr} type="select" label="To" value={conversionCurrency} onChange={setConversionCurrency} />
             </div>
-            <div className={styles.conversionText}>
+            <h2 className={styles.conversionText}>
                 {`${moneyValue} ${currencies[baseCurrency].name} = ${conversionValue} ${currencies[conversionCurrency].name}`}
-            </div>
+            </h2>
+            <h4 className={styles.conversionSubText}>
+                {`${moneyValue} ${conversionCurrency} = ${reverseConversionValue} ${baseCurrency}`}
+            </h4>
         </article>
     )
 }

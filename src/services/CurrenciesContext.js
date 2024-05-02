@@ -8,12 +8,13 @@ export const useCurrencies = () => useContext(CurrenciesContext);
 
 export const CurrenciesProvider = ({children}) => {
 
-    const [currencies, setCurrencies] = useState()
+    const [currencies, setCurrencies] = useState();
     const [baseCurrency, setBaseCurrency] = useState("EUR");
     const [conversionCurrency, setConversionCurrency] = useState("USD");
-    const [rates, setRates] = useState({})
-    const [moneyValue, setMoneyValue] = useState("1")
-    const [conversionValue, setConversionValue] = useState()
+    const [rates, setRates] = useState({});
+    const [moneyValue, setMoneyValue] = useState("1");
+    const [conversionValue, setConversionValue] = useState();
+    const [reverseConversionValue, setReverseConversionValue] = useState();
 
     const getCurrencies = async () => {
         const currenciesRequest = await fetch('https://api.vatcomply.com/currencies');
@@ -30,7 +31,9 @@ export const CurrenciesProvider = ({children}) => {
     const calculateConversion = () => {
         const formattedValue = parseFloat(moneyValue.replace('$ ', ''))
         const conversionRateValue = rates[conversionCurrency] * parseFloat(formattedValue);
+        const reverseConversionRate = parseFloat(formattedValue) / rates[conversionCurrency];
         setConversionValue(conversionRateValue);
+        setReverseConversionValue(reverseConversionRate)
     }
 
     const swapCurrencies = () => {
@@ -52,7 +55,7 @@ export const CurrenciesProvider = ({children}) => {
     }, [conversionCurrency, moneyValue, rates]);
 
     return (
-        <CurrenciesContext.Provider value={{currencies, baseCurrency, setBaseCurrency, conversionCurrency, setConversionCurrency, moneyValue, setMoneyValue, conversionValue, swapCurrencies}}>
+        <CurrenciesContext.Provider value={{currencies, baseCurrency, setBaseCurrency, conversionCurrency, setConversionCurrency, moneyValue, setMoneyValue, conversionValue, reverseConversionValue, swapCurrencies}}>
             {children}
         </CurrenciesContext.Provider>
     )
