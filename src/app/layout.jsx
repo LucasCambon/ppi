@@ -2,7 +2,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header/Header";
 import BackgroundOverlay from "@/components/BackgroundOverlay/BackgroundOverlay";
-
+import { CurrenciesProvider } from "@/services/CurrenciesContext";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
@@ -16,7 +16,9 @@ export default function RootLayout({ children }) {
       <body className={inter.className}>
         <Header />
         <BackgroundOverlay />
-        {children}
+        <CurrenciesProvider>
+          {children}
+        </CurrenciesProvider>
       </body>
     </html>
   );

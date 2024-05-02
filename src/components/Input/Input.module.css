@@ -9,6 +9,7 @@
 }
 
 .inputText,
+.select,
 .inputMoney {
     width: 279px;
     height: 40px;

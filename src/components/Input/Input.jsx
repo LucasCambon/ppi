@@ -6,23 +6,23 @@ const Input = ({ type, label, value, onChange, options, ...rest }) => {
 
   switch (type) {
     case "text":
-      inputElement = <input className={styles.inputText} type="text" value={value} onChange={onChange} {...rest} />;
+      inputElement = <input className={styles.inputText} type="text" value={value} onChange={(e) => onChange(e.target.value)} {...rest} />;
       break;
     case "select":
         inputElement = (
-            <select className={styles.select} value={value} onChange={onChange} {...rest}>
+            <select className={styles.select} value={value} onChange={(e) => onChange(e.target.value)} {...rest}>
               {options && options.map((option, index) => (
-                <option key={index} value={option.value}>{option.label}</option>
+                <option key={index} value={option}>{option}</option>
               ))}
             </select>
         );
       break;
     case "money":
       const formattedValue = value.startsWith("$") ? value : "$ " + value;
-      inputElement = <input className={styles.inputMoney} type="text" value={formattedValue} onChange={onChange} {...rest} />;
+      inputElement = <input className={styles.inputMoney} type="text" value={formattedValue} onChange={(e) => onChange(e.target.value)} {...rest} />;
       break;
     default:
-      inputElement = <input className={styles.inputText} type="text" value={value} onChange={onChange} {...rest} />;
+      inputElement = <input className={styles.inputText} type="text" value={value} onChange={(e) => onChange(e.target.value)} {...rest} />;
   }
 
   return (
