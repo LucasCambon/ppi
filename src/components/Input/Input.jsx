@@ -20,7 +20,12 @@ const Input = ({ type, label, value, onChange, options, ...rest }) => {
     case "money":
       const formattedValue = value.startsWith("$") ? value : "$ " + value;
       inputElement = <input className={`${styles.inputMoney}`} type="text" value={formattedValue} onChange={(e) => {
-        const valueWithoutSymbol = e.target.value.replace(/^\$?\s*/, ''); 
+        const valueWithoutSymbol = e.target.value.replace(/^\$?\s*/, '');
+        console.log(valueWithoutSymbol)
+        if (valueWithoutSymbol === '') {
+          onChange('0');
+          return;
+        }
         if (/^\d*\.?\d*$/.test(valueWithoutSymbol) && !isNaN(parseFloat(valueWithoutSymbol))) {
           const valueFormatted = parseFloat(valueWithoutSymbol);
           console.log(valueFormatted);
