@@ -1,17 +1,15 @@
-/* Input.module.css */
-
 .inputContainer {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     height: 76px;
+    width: 26.59%;
     position: relative;
 }
 
 .inputText,
 .select,
 .inputMoney {
-    width: 279px;
     height: 40px;
     border: 1px solid #CCCCCC;
     border-radius: 4px;
@@ -23,8 +21,6 @@
     padding: 10px;
 }
 
-
-
 .label {
     width: 62px;
     height: 20px;
@@ -33,4 +29,11 @@
     line-height: 20px;
     text-align: left;
     opacity: 1;
+}
+
+@media (max-width: 375px) {
+    .inputContainer {
+        width: 279px;
+    }
+    
 }

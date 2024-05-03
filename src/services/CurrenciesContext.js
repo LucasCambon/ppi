@@ -13,8 +13,7 @@ export const CurrenciesProvider = ({children}) => {
     const [conversionCurrency, setConversionCurrency] = useState("USD");
     const [rates, setRates] = useState({});
     const [moneyValue, setMoneyValue] = useState("1");
-    const [conversionValue, setConversionValue] = useState();
-    const [reverseConversionValue, setReverseConversionValue] = useState();
+    const [conversionValues, setConversionValues] = useState();
 
     const getCurrencies = async () => {
         const currenciesRequest = await fetch('https://api.vatcomply.com/currencies');
@@ -28,19 +27,40 @@ export const CurrenciesProvider = ({children}) => {
         setRates(rateResults.rates);
     };
 
+    const getCurrentDate = () => {
+        const now = new Date();
+        const options = {
+            month: 'short',
+            day: '2-digit',
+            year: 'numeric',
+            hour: 'numeric',
+            minute: '2-digit',
+            hour12: false,
+            timeZoneName: 'short',
+            timeZone: 'UTC'
+        };
+        const formatter = new Intl.DateTimeFormat('en-US', options);
+        const formattedDateTime = formatter.format(now);
+        return formattedDateTime;
+    };
+
     const calculateConversion = () => {
         const formattedValue = parseFloat(moneyValue.replace('$ ', ''))
-        const conversionRateValue = rates[conversionCurrency] * parseFloat(formattedValue);
-        const reverseConversionRate = parseFloat(formattedValue) / rates[conversionCurrency];
-        setConversionValue(conversionRateValue);
-        setReverseConversionValue(reverseConversionRate)
-    }
+        const conversionRateValue = (rates[conversionCurrency] * parseFloat(formattedValue)).toFixed(7);
+        const reverseConversionRate = (parseFloat(formattedValue) / rates[conversionCurrency]).toFixed(7);
+        const currentDate = getCurrentDate();
+        setConversionValues({
+            date: currentDate,
+            conversionValue: conversionRateValue,
+            reverseConversionValue: reverseConversionRate
+        })
+    };
 
     const swapCurrencies = () => {
         const tempValue = baseCurrency;
-        setBaseCurrency(conversionCurrency)
-        setConversionCurrency(tempValue)
-    }
+        setBaseCurrency(conversionCurrency);
+        setConversionCurrency(tempValue);
+    };
 
     useEffect(() => {
         getCurrencies();
@@ -55,9 +75,9 @@ export const CurrenciesProvider = ({children}) => {
     }, [conversionCurrency, moneyValue, rates]);
 
     return (
-        <CurrenciesContext.Provider value={{currencies, baseCurrency, setBaseCurrency, conversionCurrency, setConversionCurrency, moneyValue, setMoneyValue, conversionValue, reverseConversionValue, swapCurrencies}}>
+        <CurrenciesContext.Provider value={{currencies, baseCurrency, setBaseCurrency, conversionCurrency, setConversionCurrency, moneyValue, setMoneyValue, conversionValues, swapCurrencies}}>
             {children}
         </CurrenciesContext.Provider>
-    )
+    );
 
-}
+};

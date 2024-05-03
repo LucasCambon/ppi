@@ -10,32 +10,108 @@
 }
 
 .formContainer {
-    display: flex; /* Utiliza Flexbox */
-    align-items: center; /* Alinea los elementos verticalmente */
-    justify-content: space-around;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 42px;
 }
 
 .conversionText {
-    font-family: Inter;
+    position: relative;
+    color: #000000;
+    width: 330px;
+    left: 3.73%;
+    top: 12%;
+    gap: 0px;
+    opacity: 1;
+}
+
+.conversionText h2 {
     font-size: 32px;
     font-weight: 600;
     line-height: 36px;
     text-align: left;
     color: #000000;
-    width: 330px;
-    height: 72px;
-    top: 407px;
-    left: 119px;
-    gap: 0px;
-    opacity: 1;
 }
 
 .conversionSubText{
+    position: relative;
+    left: 3.73%;
+    top: 15%;
     font-size: 16px;
     font-weight: 400;
     line-height: 36px;
     text-align: left;
     color: #757575;
+}
+
+.rightContent {
+    position: relative;
+    top: 5%;
+}
+
+.subCard {
+    position: relative;
+    left: 52.31%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #E8F3FF;
+    box-shadow: 0px 2px 4px 0px #0000000D;
+    width: 46%;
+    height: 105px;
+    gap: 0px;
+    border-radius: 8px;
+    opacity: 0px;
+    padding: 20px;
+}
+
+.subCard h4 {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 36px;
+    text-align: left;
+    color: #000000;
+}
+
+.dateText {
+    position: relative;
+    left: 52.31%;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 36px;
+    text-align: right;
+    width: 46%;
+}
+
+.currency {
+    text-decoration: underline;
+}
+
+@media (max-width: 986px) {
+    .subCard h4 {
+        font-size: 12px;
+        line-height: 23px;
+    }
+    
+    .dateText {
+        font-size: 12px;
+        line-height: 23px;
+    }
+}
+
+@media (max-width: 648px) {
+    .subCard {
+        display: none;
+    }
+    .rightContent {
+        position: relative;
+        top: 25%;
+    }
+    .dateText {
+        width: 95%;
+        left: 3.73%;
+    }
 }
 
 @media (max-width: 375px) {
@@ -44,5 +120,32 @@
         left: 8.27%;
         height: 484px;
         width: 82.94%;
+    }
+    .formContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: flex-start;
+        padding: 15px;
+        height: 370px;
+    }
+    .conversionText {
+        top: 0;
+    }
+    .conversionText h2 {
+        font-size: 24px;
+    }
+    .conversionSubText {
+        font-size: 16px;
+        top: 0%;
+    }
+    .rightContent {
+        top: 0;
+    }
+    .dateText {
+        width: 100%;
+        top: 15px;
+        left: 0;
+        text-align: left;
     }
 }
