@@ -6,7 +6,7 @@ import { useCurrencies } from "@/services/CurrenciesContext";
 
 
 export default function Home() {
-  const { currencies, baseCurrency, setBaseCurrency, conversionCurrency, setConversionCurrency, moneyValue, setMoneyValue, conversionValues, swapCurrencies } = useCurrencies();
+  const { currencies, baseCurrency, conversionCurrency, moneyValue } = useCurrencies();
   
   if (currencies) {
     return (
